@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="max-w-7xl mx-auto">
-    <div id="header">
+    <div v-if="$route.path.includes('sign-in') < 1" id="header">
       <div class="relative bg-white">
         <div class="px-4 sm:px-6">
           <div
@@ -36,7 +36,7 @@
                   focus:outline-none
                   focus:ring-2
                   focus:ring-inset
-                  focus:ring-indigo-500
+                  focus:ring-blue-500
                 "
                 aria-expanded="false"
               >
@@ -96,8 +96,8 @@
                 >
                   Soliq imtiyozlari
                 </a>
-                <a
-                  href="#"
+                <router-link
+                  to="/sign-in"
                   class="
                     text-base
                     font-medium
@@ -106,7 +106,7 @@
                   "
                 >
                   Kirish
-                </a>
+                </router-link>
               </nav>
               <button
                 class="
@@ -124,7 +124,7 @@
                   font-medium
                   text-blue-600
                   border-blue-600
-                  hover:border-indigo-700 hover:text-blue-700
+                  hover:border-blue-700 hover:text-blue-700
                 "
               >
                 Ro'yxatdan o'tish

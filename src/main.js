@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './utils/libraries'
 import './utils/tools'
+import './utils/constants'
 
 import './assets/css/tailwind.css'
 
