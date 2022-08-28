@@ -5,6 +5,7 @@ import store from './store'
 import './utils/libraries'
 import './utils/tools'
 import './utils/constants'
+import './utils/components'
 
 import './assets/css/tailwind.css'
 
