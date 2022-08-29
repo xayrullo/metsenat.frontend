@@ -37,6 +37,7 @@ const routes = [
         children: [
           {
             path: '',
+            name: 'sponsors-list',
             component: () => import('./views/monitoring/sponsors/index')
           },
           {
@@ -49,8 +50,19 @@ const routes = [
       {
         path: 'students',
         name: 'students',
-        component: () => import('./views/monitoring/students'),
-        children: []
+        component: () => import('./views/monitoring/students.vue'),
+        children: [
+          {
+            path: '',
+            name: 'students-list',
+            component: () => import('./views/monitoring/students/index')
+          },
+          {
+            path: ':index',
+            name: 'students-detail',
+            component: () => import('./views/monitoring/students/detail')
+          }
+        ]
       }
     ]
   }

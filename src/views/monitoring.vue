@@ -177,7 +177,7 @@ export default {
   components: {},
   data () {
     return {
-      isActive: 'sponsors'
+      isActive: 'students'
     }
   },
   created () {
@@ -192,7 +192,7 @@ export default {
       this.isActive = status
       if (this.$route.path.includes(this.isActive) < 1) {
         this.$router.push({
-          name: this.isActive
+          name: `${this.isActive}-list`
         })
       }
     }
