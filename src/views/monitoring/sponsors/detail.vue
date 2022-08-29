@@ -13,7 +13,7 @@
             "
           >
             <div class="flex justify-start lg:w-0 lg:flex-1 text-gray-900">
-              <router-link :to="{ name: 'sponsors' }">
+              <router-link :to="{ name: 'sponsors-list' }">
                 <i class="bx bx-left-arrow-alt text-2xl cursor-pointer"></i>
               </router-link>
               <span class="pt-1 mx-3">

@@ -183,7 +183,7 @@ export default {
   created () {
     if (this.$route.path.includes(this.isActive) < 1) {
       this.$router.push({
-        name: this.isActive
+        name: `${this.isActive}-list`
       })
     }
   },
