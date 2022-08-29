@@ -2,7 +2,7 @@
   <table class="table text-gray-400 border-separate text-sm w-full">
     <thead class="text-gray-500">
       <tr>
-        <th v-for="(th, index) in fields" :key="index" class="p-3" :class="th.class">{{th.label}}</th>
+        <th v-for="(th, index) in fields" :key="index" class="p-3 text-gray-400 text-xs" :class="th.class">{{th.label}}</th>
       </tr>
     </thead>
     <tbody>

@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'SponsorsComponent',
   data () {
@@ -71,41 +72,21 @@ export default {
           label: 'AMALLAR',
           tdClass: 'text-center'
         }
-      ],
-      items: [
-        {
-          id: 586,
-          full_name: 'Falonchiyev Pistonchi',
-          phone: '+998 (90) 000-12-36',
-          sum: 50000000,
-          payment_type: [
-            {
-              id: 44,
-              title: 'Naqd pul'
-            }
-          ],
-          firm: '',
-          spent: 0,
-          created_at: '2022-08-15T17:46:55.760537+05:00',
-          get_status_display: 'Moderatsiyada'
-        },
-        {
-          id: 585,
-          full_name: "Yuldoshev Mirjalol Komil o'g'li",
-          phone: '+998 (99) 581 21 21',
-          sum: 50000000,
-          payment_type: [
-            {
-              id: 45,
-              title: 'Plastik karta'
-            }
-          ],
-          firm: '',
-          spent: 0,
-          created_at: '2022-08-14T07:42:54.497846+05:00',
-          get_status_display: 'Moderatsiyada'
-        }
       ]
+    }
+  },
+  mounted () {
+    this.fetchSponsors()
+  },
+  computed: {
+    ...mapGetters({
+      items: 'getSponsors',
+      pending: 'pendingSponsor'
+    })
+  },
+  methods: {
+    fetchSponsors () {
+      this.$store.dispatch('getSponsors')
     }
   }
 }
