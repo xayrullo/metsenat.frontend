@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { initErrorHandler } from './utils/error-handler'
 
 Vue.use(VueRouter)
 
@@ -73,5 +74,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+initErrorHandler(router)
 
 export default router

@@ -13,16 +13,19 @@
               "
             >
               <div class="flex justify-start lg:w-0 lg:flex-1 text-gray-900">
-                <router-link :to="{ name: 'students' }">
+                <router-link :to="{ name: 'students-list' }">
                   <i class="bx bx-left-arrow-alt text-2xl cursor-pointer"></i>
                 </router-link>
-                <span class="pt-1 mx-3">
+                <span v-if="$route.params.index === 'new'" class="pt-1 mx-3">
+                  Talaba qo'shish
+                </span>
+                <span v-else class="pt-1 mx-3">
                   {{student.full_name}}
                 </span>
-                <span v-if="student.get_status_display === 'Moderatsiyada'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">{{student.get_status_display}}</span>
-                <span v-else-if="student.get_status_display === 'Yangi'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">{{student.get_status_display}}</span>
-                <span v-else-if="student.get_status_display === 'Tasdiqlangan'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">{{student.get_status_display}}</span>
-                <span v-else class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">{{student.get_status_display}}</span>
+                <span v-if="student.get_status_display === 'Moderatsiyada' && $route.params.index !== 'new'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">{{student.get_status_display}}</span>
+                <span v-else-if="student.get_status_display === 'Yangi' && $route.params.index !== 'new'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800">{{student.get_status_display}}</span>
+                <span v-else-if="student.get_status_display === 'Tasdiqlangan' && $route.params.index !== 'new'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">{{student.get_status_display}}</span>
+                <span v-else-if="$route.params.index !== 'new'" class="pt-1 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800">{{student.get_status_display}}</span>
               </div>
             </div>
           </div>
@@ -112,8 +115,7 @@ export default {
     return {}
   },
   mounted () {
-    this.fetchDirectories()
-    this.fetchStudent()
+    if (this.$route.params.index !== 'new') this.fetchStudent()
   },
   computed: {
     ...mapGetters({
@@ -124,10 +126,6 @@ export default {
   methods: {
     fetchStudent () {
       this.$store.dispatch('getStudentById', { id: this.$route.params.index })
-    },
-    async fetchDirectories () {
-      await this.$store.dispatch('getTariffs')
-      await this.$store.dispatch('getPaymentTypies')
     },
     openFormModal (data) {
       this.$modal.show(

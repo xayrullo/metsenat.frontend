@@ -190,7 +190,11 @@ export default {
   methods: {
     changeNav (status) {
       this.isActive = status
-      if (this.$route.path.includes(this.isActive) < 1) {
+      if (status === 'dashboard') {
+        this.$router.push({
+          name: `${this.isActive}`
+        })
+      } else if (this.$route.path.includes(this.isActive) < 1) {
         this.$router.push({
           name: `${this.isActive}-list`
         })
