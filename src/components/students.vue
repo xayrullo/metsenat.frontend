@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="flex justify-end">
+      <button type="button" class="inline-flex items-center px-4 py-1 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600">
+        <i class="bx bx-plus text-white text-xl mr-2" @click="newStudent()"></i>
+        Talaba qo'shish
+      </button>
+    </div>
     <x-table :fields="fields" :items="items">
       <template #order="item">
         <x-table-order :data="item"/>
