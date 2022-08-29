@@ -123,19 +123,20 @@ export default {
   },
   methods: {
     pageChanged (pagination) {
-      // eslint-disable-next-line prefer-const
-      let _query = this.$route.query
-      _query.page = pagination.page
-      _query.size = pagination.size
-      this.$router.push({
-        path: this.$route.path,
-        query: _query
-      })
+      // // eslint-disable-next-line prefer-const
+      // let _query = this.$route.query
+      // _query.page = pagination.page
+      // _query.size = pagination.size
+      // this.$router.push({
+      //   path: this.$route.path,
+      //   query: _query
+      // })
+      this.fetchStudents(pagination)
     },
-    fetchStudents () {
+    fetchStudents (pagination) {
       const query = {
-        page: this.$route.query.page ? this.$route.query.page : 1,
-        page_size: this.$route.query.size ? this.$route.query.size : 2
+        page: pagination && pagination.page ? pagination.page : 1,
+        page_size: pagination && pagination.size ? pagination.size : 5
       }
       this.$store.dispatch('getStudents', query)
     },

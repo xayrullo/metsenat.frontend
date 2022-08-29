@@ -65,6 +65,11 @@
             text-sm
             font-medium
           "
+          :class="
+            page === num
+              ? 'border-blue-500 bg-blue-50 text-blue-600'
+              : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
+          "
           @click="$emit('onChange', { page: num, size: size })"
           >{{ num }}</a
         >
@@ -149,16 +154,14 @@
             z-10
             inline-flex
             items-center
-            border border-blue-500
-            bg-blue-50
+            border
             px-4
             py-2
             text-sm
             font-medium
-            text-blue-600
           "
           :class="
-            $route.query.page === page
+            page === 1
               ? 'border-blue-500 bg-blue-50 text-blue-600'
               : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
           "
@@ -194,7 +197,7 @@
             font-medium
           "
           :class="
-            $route.query.page === beginningPages.first
+            page === beginningPages.first
               ? 'border-blue-500 bg-blue-50 text-blue-600'
               : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
           "
@@ -215,7 +218,7 @@
             md:inline-flex
           "
           :class="
-            $route.query.page === beginningPages.second
+            page === beginningPages.second
               ? 'border-blue-500 bg-blue-50 text-blue-600'
               : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
           "
@@ -236,7 +239,7 @@
             md:inline-flex
           "
           :class="
-            $route.query.page === beginningPages.third
+            page === beginningPages.third
               ? 'border-blue-500 bg-blue-50 text-blue-600'
               : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
           "
@@ -273,7 +276,7 @@
             font-medium
           "
           :class="
-            $route.query.page === count
+            page === count
               ? 'border-blue-500 bg-blue-50 text-blue-600'
               : 'border-gray-300 bg-white text-gray-500 hover:bg-gray-50'
           "
