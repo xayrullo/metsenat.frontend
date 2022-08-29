@@ -18,6 +18,42 @@ const routes = [
     path: '/monitoring',
     name: 'monitoring',
     component: () => import(/* webpackChunkName: "monitoring" */ './views/monitoring.vue')
+  },
+  {
+    path: '/monitoring',
+    name: 'monitoring',
+    component: () => import('./views/monitoring'),
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('./views/monitoring/dashboard'),
+        children: []
+      },
+      {
+        path: 'sponsors',
+        name: 'sponsors',
+        component: () => import('./views/monitoring/sponsors.vue'),
+        children: [
+          {
+            path: '',
+            name: 'sponsor-list',
+            component: () => import('./views/monitoring/sponsors/index')
+          },
+          {
+            path: ':index',
+            name: 'sponsor-detail',
+            component: () => import('./views/monitoring/sponsors/detail')
+          }
+        ]
+      },
+      {
+        path: 'students',
+        name: 'students',
+        component: () => import('./views/monitoring/students'),
+        children: []
+      }
+    ]
   }
 ]
 

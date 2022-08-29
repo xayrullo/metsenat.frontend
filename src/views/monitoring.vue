@@ -166,32 +166,35 @@
       </div>
     </div>
     <div class="">
-      <dashboard v-if="isActive === 'dashboard'"/>
-      <sponsors v-if="isActive === 'sponsors'"/>
-      <students v-if="isActive === 'students'"/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import Dashboard from '@/components/dashboard.vue'
-import Sponsors from '@/components/sponsors.vue'
-import Students from '@/components/students.vue'
 export default {
   name: 'MonitoringView',
-  components: {
-    Dashboard,
-    Sponsors,
-    Students
-  },
+  components: {},
   data () {
     return {
       isActive: 'sponsors'
     }
   },
+  created () {
+    if (this.$route.path.includes(this.isActive) < 1) {
+      this.$router.push({
+        name: this.isActive
+      })
+    }
+  },
   methods: {
     changeNav (status) {
       this.isActive = status
+      if (this.$route.path.includes(this.isActive) < 1) {
+        this.$router.push({
+          name: this.isActive
+        })
+      }
     }
   }
 }
