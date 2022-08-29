@@ -2,45 +2,15 @@
   <table class="table text-gray-400 border-separate text-sm w-full">
     <thead class="text-gray-500">
       <tr>
-        <th class="p-3">Brand</th>
-        <th class="p-3 text-left">Category</th>
-        <th class="p-3 text-left">Price</th>
-        <th class="p-3 text-left">Status</th>
-        <th class="p-3 text-left">Action</th>
+        <th v-for="(th, index) in fields" :key="index" class="p-3" :class="th.class">{{th.label}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white">
-        <td class="p-3">
-          <div class="flex align-items-center">
-            <img
-              class="rounded-full h-12 w-12 object-cover"
-              src="https://images.unsplash.com/photo-1613588718956-c2e80305bf61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80"
-              alt="unsplash image"
-            />
-            <div class="ml-3">
-              <div class="">Appple</div>
-              <div class="text-gray-500">mail@rgmail.com</div>
-            </div>
-          </div>
-        </td>
-        <td class="p-3">Technology</td>
-        <td class="p-3 font-bold">200.00$</td>
-        <td class="p-3">
-          <span class="bg-green-400 text-gray-50 rounded-md px-2"
-            >available</span
-          >
-        </td>
-        <td class="p-3">
-          <a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
-            <i class="material-icons-outlined text-base">visibility</i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gray-100 mx-2">
-            <i class="material-icons-outlined text-base">edit</i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-gray-100 ml-2">
-            <i class="material-icons-round text-base">delete_outline</i>
-          </a>
+      <tr v-for="(item, ind) in items" :key="ind" class="bg-white">
+        <td v-for="(td, index) in fields" :key="index" class="p-3 text-gray-800" :class="index === fields.length - 1 ? `${td.tdClass} border-radius` : td.tdClass">
+          <slot :name="td.key" v-bind:index="ind" v-bind:item="item">
+            {{item[td.key]}}
+          </slot>
         </td>
       </tr>
     </tbody>
@@ -48,10 +18,21 @@
 </template>
 <script>
 export default {
-  name: 'TableComponent'
+  name: 'TableComponent',
+  props: {
+    fields: Array,
+    items: Array
+  },
+  data () {
+    return {}
+  },
+  created () {}
 }
 </script>
 <style scoped>
+.border-radius {
+  border-radius: 0 0.625rem 0.625rem 0 !important;
+}
 .table {
   border-spacing: 0 15px;
 }
@@ -64,10 +45,10 @@ i {
   border-radius: 20px;
 }
 
-tr td:nth-child(n + 5),
+/* tr td:nth-child(n + 5),
 tr th:nth-child(n + 5) {
   border-radius: 0 0.625rem 0.625rem 0;
-}
+} */
 
 tr td:nth-child(1),
 tr th:nth-child(1) {

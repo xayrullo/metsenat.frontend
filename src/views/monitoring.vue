@@ -186,7 +186,7 @@ export default {
   },
   data () {
     return {
-      isActive: 'students'
+      isActive: 'sponsors'
     }
   },
   methods: {

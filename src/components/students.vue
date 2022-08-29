@@ -1,6 +1,6 @@
 <template>
     <div>
-      <x-table />
+      <!-- <x-table /> -->
     </div>
 </template>
 <script>
