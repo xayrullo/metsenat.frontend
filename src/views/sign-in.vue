@@ -116,12 +116,12 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$store.dispatch('setUser', {
-        password: this.password,
-        username: this.username
-      }).then(() => {
-        this.$router.push(this.$const.adminRoot)
-      })
+      // this.$store.dispatch('setUser', {
+      //   password: this.password,
+      //   username: this.username
+      // }).then(() => {
+      // })
+      this.$router.push('/monitoring')
       console.log('Submitted')
     }
   }

@@ -3,12 +3,14 @@ export default {
   state: {
     sponsors: [],
     sponsor: {},
-    pending: false
+    pending: false,
+    pagination: {}
   },
   getters: {
     pendingSponsor: state => state.pending,
     getSponsors: state => state.sponsors,
-    getSponsorById: state => state.sponsor
+    getSponsorById: state => state.sponsor,
+    getSponsorPagination: state => state.pagination
   },
   mutations: {
     PENDING (state, payload) {
@@ -19,6 +21,9 @@ export default {
     },
     SET_SPONSOR_BY_ID (state, payload) {
       state.sponsor = payload
+    },
+    SET_PAGINATION (state, payload) {
+      state.pagination = payload
     }
   },
   actions: {
@@ -62,6 +67,14 @@ export default {
           .then(res => {
             const _res = res.results || res
             commit('SET_SPONSORS', _res)
+            commit('SET_PAGINATION', {
+              total: res.count,
+              start: (payload.page - 1) * payload.page_size + 1,
+              end: payload.page * payload.page_size < res.count ? payload.page * payload.page_size : res.count,
+              page: payload.page,
+              size: payload.page_size,
+              count: Math.floor(res.count / payload.page_size) + (res.count % payload.page_size > 0 ? 1 : 0)
+            })
             resolve(_res)
           })
           .catch(error => {
