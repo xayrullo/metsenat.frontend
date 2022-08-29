@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-between min-w-full py-8">
+    <div v-if="!$route.params.index" class="flex justify-between min-w-full py-8">
       <div>
         <nav
           class="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"

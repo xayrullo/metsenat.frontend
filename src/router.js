@@ -37,12 +37,11 @@ const routes = [
         children: [
           {
             path: '',
-            name: 'sponsor-list',
             component: () => import('./views/monitoring/sponsors/index')
           },
           {
             path: ':index',
-            name: 'sponsor-detail',
+            name: 'sponsors-detail',
             component: () => import('./views/monitoring/sponsors/detail')
           }
         ]

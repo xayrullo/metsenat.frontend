@@ -87,6 +87,11 @@ export default {
   methods: {
     fetchSponsors () {
       this.$store.dispatch('getSponsors')
+    },
+    showDetail (item) {
+      this.$router.push({
+        path: `/monitoring/sponsors/${item.id}`
+      })
     }
   }
 }
